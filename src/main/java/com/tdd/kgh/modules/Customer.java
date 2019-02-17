@@ -8,7 +8,8 @@ public class Customer {
 	String contactNumber;
 	String email;
 	String aadhar;
-
+	String idproof;
+	
 	public int getId() {
 		return id;
 	}
@@ -55,6 +56,14 @@ public class Customer {
 
 	public void setAadhar(String aadhar) {
 		this.aadhar = aadhar;
+	}
+	
+	public String getIDProof() {
+		return idproof;
+	}
+
+	public void setIDProof(String idproof) {
+		this.idproof = idproof;
 	}
 
 }

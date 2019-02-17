@@ -10,6 +10,7 @@ public class Employee {
 	int sal;
 	int DId;
 	int RId;
+	String password;
 	
 	public int getId() {
 		return id;
@@ -81,5 +82,13 @@ public class Employee {
 
 	public void setRId(int RId) {
 		this.RId = RId;
+	}
+	
+	public String getPassword(){
+		return password;
+	}
+	
+	public void setPassword(String password){
+		this.password = password;
 	}
 }

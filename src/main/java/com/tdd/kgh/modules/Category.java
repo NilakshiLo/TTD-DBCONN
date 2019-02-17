@@ -1,8 +1,13 @@
 package com.tdd.kgh.modules;
 
+import java.util.Iterator;
+
+import com.tdd.kgh.CategoryDB;
+
 public class Category {
 	int id;
 	String name;
+	int count;
 	
 	public int getId() {
 		return id;
@@ -20,4 +25,13 @@ public class Category {
 		this.name = name;
 	}
 
+	public int getCount(){
+		return count;
+	}
+	
+	public void setCount(int count){
+		this.count = count;
+	}
+	
 }
+
