@@ -48,7 +48,6 @@ public final class DBConnection {
 	}
 	
 	public static void loadPropertiesFile(){
-		
 		try{
 			String resourceName = "db.properties"; // could also be a constant
 			loader = Thread.currentThread().getContextClassLoader();
@@ -61,3 +60,5 @@ public final class DBConnection {
 		}
 	}
 }
+
+//load once
