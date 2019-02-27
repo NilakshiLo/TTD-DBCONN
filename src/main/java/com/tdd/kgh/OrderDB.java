@@ -177,4 +177,57 @@ public class OrderDB {
 		if(i==0) return false;
 		return true;
 	}
+	
+	public ArrayList<Order> getAllStatements(String in, String out) throws Exception{
+		
+		if(DBConnection.getConnection()==null) 
+			DBConnection.connect();
+		
+		DBConnection.loadPropertiesFile();
+		//insertItemforOrder = insert into order_item values (OID , Item_id, Qty) values (? , ? , ?) 
+
+		Properties props = DBConnection.getProperties();
+		String qry = props.getProperty("getAllStatements");
+		
+		PreparedStatement pstmt  = DBConnection.getConnection().prepareStatement(qry);
+
+		pstmt.setString(1, in);
+		pstmt.setString(2, out);
+				
+		ResultSet rs = pstmt.executeQuery(qry);
+		
+		rs.last();
+		int rows = rs.getRow();
+		rs.beforeFirst();
+		
+		ArrayList<Order> orderList = new ArrayList<Order>(rows);
+		while(rs.next()){
+				orderList.add(getOrderObject(rs));
+		}
+		
+		return orderList;
+	}
+	
+	public Order getOrderDetails(Bill bill) throws Exception{
+		
+		if(DBConnection.getConnection()==null) 
+			DBConnection.connect();
+		
+		DBConnection.loadPropertiesFile();
+		//insertItemforOrder = insert into order_item values (OID , Item_id, Qty) values (? , ? , ?) 
+
+		Properties props = DBConnection.getProperties();
+		String qry = props.getProperty("showBillDetails");
+		
+		PreparedStatement pstmt  = DBConnection.getConnection().prepareStatement(qry);
+
+		pstmt.setInt(1, bill.getId());
+			
+		ResultSet rs = pstmt.executeQuery(qry);
+		Order o = new Order();
+		
+		while(rs.next()) o = getOrderObject(rs);
+		return o;
+	}
+	
 }
