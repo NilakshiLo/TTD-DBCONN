@@ -60,6 +60,33 @@ addEmployee = "insert into employee (EName, ENumber, EUsername, DID, RID, Date_o
 		return true;
 	}
 	
+	boolean loginEmployee(Employee e)throws Exception{
+		if(DBConnection.getConnection()==null) 
+			DBConnection.connect();
+		
+		DBConnection.loadPropertiesFile();
+		
+		String qry = DBConnection.getProperties().getProperty("loginEmployee");
+		System.out.println(qry);
+	
+		PreparedStatement pstmt  = DBConnection.getConnection().prepareStatement(qry);
+
+		pstmt.setString(1, e.getUsername());
+		pstmt.setString(2, e.getPassword());
+		
+		System.out.println(pstmt);
+		
+		
+		/*Statement stmt =DBConnection.con.createStatement();
+		stmt.executeUpdate("insert into room (size, Price, name) values (1,2, 'eferf' );");
+		*/
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(rs.next()) return true;
+		return false;
+	}
+	
 	boolean updateEmployee(Employee e)throws Exception{
 		if(DBConnection.getConnection()==null) 
 			DBConnection.connect();
